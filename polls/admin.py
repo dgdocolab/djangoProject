@@ -6,14 +6,12 @@ from .models import Choice, Question
 class ChoiceInline(admin.StackedInline):
     model = Choice
     extra = 3
+    readonly_fields = ["created_at", "updated_at"]
 
 
 class QuestionAdmin(admin.ModelAdmin):
-    fieldsets = [
-        (None, {"fields": ["question_text"]}),
-        ("Date information", {"fields": ["pub_date"], "classes": ["collapse"]}),
-    ]
     inlines = [ChoiceInline]
+    readonly_fields = ["created_at", "updated_at"]
 
 
 admin.site.register(Question, QuestionAdmin)
