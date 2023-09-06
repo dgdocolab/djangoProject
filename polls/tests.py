@@ -1,6 +1,7 @@
 import datetime
 
 from django.test import TestCase
+from django.core.exceptions import ValidationError
 
 from polls.models import Question
 
@@ -10,9 +11,25 @@ from polls.models import Question
 #     "Salut ça va ?",
 # ]
 
+# def validatortext(value):
+#     if value is None or value != type:
+#         raise ValidationError(
+#             "%(value)s is not a char",
+#             params={"value": value},
+#         )
+
+
 def create_question(text, date, author=None):
     # check text, date, author
-    return Question.objects.create(question_text=text, pub_date=date, author=author)
+    if text is None or type(text) != type(text):
+        raise ValidationError(
+            "(text) is not a text / is empty",
+        )
+    else:
+        return Question.objects.create(question_text=text, pub_date=date, author=author)
+
+
+
 
 
 class DevTest(TestCase):
@@ -20,12 +37,13 @@ class DevTest(TestCase):
 
 
 class QuestionTest(TestCase):
-    # def test_nul_a_chier(self):
-    #     question_1 = create_question("bla", datetime.datetime.now().astimezone(), "jean kulowski")
-    #     question_2 = create_question("bla 2", datetime.datetime.now().astimezone(), "jean kulowski")
-    #     print(Question.objects.all())
-    #     print(type(Question.objects.all()))
-    #     print(Question.objects.filter(author="jean kulowski"))
+    def test_nul_a_chier(self):
+        question = create_question(None, datetime.datetime.now().astimezone(), "jean kulowski")
+        # create_question("bla 2", datetime.datetime.now().astimezone(), "jean kulowski")
+        print(question)
+        # print(type(Question.objects.all()))
+        # print(Question.objects.filter(author="jean kulowski"))
+
     pass
 
 
