@@ -98,12 +98,31 @@ class UtilitiesTest(TestCase):
         parameter = datetime.now()
         self.assertTrue(is_valid_date(parameter))
 
-    # def test_datetime_a_is_a_valid_date(self):
-    #     parameter = datetime.now(), datetime() + timedelta(days=2)
-    #     self.assertTrue(compare_datetime_a_greater_than_datetime_b(parameter))
+    # COMPARE_DATETIME_A_GREATER_THAN_DATETIME_B
+    def test_compare_datetime_a_greater_than_datetime_b_raise_error_with_wrong_parameter_type_1(self):
+        wrong_parameter = "test"
+        second_parameter = datetime.now()
+        with self.assertRaises(ValidationError):
+            compare_datetime_a_greater_than_datetime_b(wrong_parameter, second_parameter)
+
+    def test_compare_datetime_a_greater_than_datetime_b_raise_error_with_wrong_parameter_type_2(self):
+        first_parameter = datetime.now()
+        wrong_parameter = "test"
+        with self.assertRaises(ValidationError):
+            compare_datetime_a_greater_than_datetime_b(first_parameter, wrong_parameter)
+
+    def test_compare_datetime_a_greater_than_datetime_b_return_true_with_a_greater_than_b(self):
+        dta = datetime.now() + timedelta(days=2)
+        dtb = datetime.now()
+        self.assertTrue(compare_datetime_a_greater_than_datetime_b(dta, dtb))
+
+    def test_compare_datetime_a_greater_than_datetime_b_return_false_with_a_lower_than_b(self):
+        dta = datetime.now() + timedelta(days=2)
+        dtb = datetime.now()
+        self.assertFalse(compare_datetime_a_greater_than_datetime_b(dtb, dta))
 
     def test_create_question(self):
-        parameter = "d"
+        pass
 
 
 """

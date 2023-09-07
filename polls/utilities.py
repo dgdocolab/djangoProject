@@ -51,14 +51,11 @@ def is_valid_date(date_to_test):
     return False
 
 
-# def compare_datetime_a_greater_than_datetime_b(datetime_a, datetime_b):
-#     if is_valid_date(datetime_a):
-#         if is_valid_date(datetime_b):
-#             if datetime_a > datetime_b:
-#                 return True
-#             return False
-#         return False
-#     return False
+def compare_datetime_a_greater_than_datetime_b(datetime_a, datetime_b):
+    if is_valid_date(datetime_a) and is_valid_date(datetime_b):
+        return datetime_a > datetime_b
+    else:
+        raise ValidationError("Les dates doivent être valides")
 
 
 def create_question(text, date, author=None):
