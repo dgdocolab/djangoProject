@@ -34,33 +34,45 @@ def is_valid_question(question_to_test):
     :param question_to_test:
     :return: Boolean
     """
-    if 0 < len(question_to_test) < 150:
+    if 0 < len(question_to_test) < 150 and isinstance(question_to_test, str):
         return True
-    return False
+    else:
+        return False
 
 
 def is_valid_date(date_to_test):
     """
     This function check the date parameter is not empty, and the type. Return false if not
     :param date_to_test:
-    :return:
+    :return: Boolean
     """
-    if not isinstance(date_to_test, datetime.date):
-        if 0 < len(date_to_test):
-            return True
-    # raise ValidationError("date_to_test must be a datetime. [not a datetime] : " + str(type(date_to_test)) + "]")
+    if isinstance(date_to_test, datetime.datetime):
+        return True
     return False
 
 
+# def compare_datetime_a_greater_than_datetime_b(datetime_a, datetime_b):
+#     if is_valid_date(datetime_a):
+#         if is_valid_date(datetime_b):
+#             if datetime_a > datetime_b:
+#                 return True
+#             return False
+#         return False
+#     return False
+
+
 def create_question(text, date, author=None):
-    # TODO : DAVID : check date with type, author and text with length.
-    # TODO : DAVID : add test.
-    # TODO : DAVID : Add a description.
-    if is_valid_string(text):
-        if author is not None and is_valid_author(author):
-            return Question.objects.create(question_text=text, pub_date=date, author=author)
-        elif author is not None and not is_valid_author(author):
-            raise ValidationError('The author parameter is empty.')
-        else:
+    """
+    This function create and return a question with a text, a date and an optional author.
+    """
+    # TODO : DAVID : add test. ok
+    if is_valid_string(text) and 0 < len(text) < 200 and is_valid_date(date):
+        if author is None:
             return Question.objects.create(question_text=text, pub_date=date)
-    raise ValidationError("Some parameter may be wrong.")
+        else:
+            if is_valid_author(author):
+                return Question.objects.create(question_text=text, pub_date=date, author=author)
+            else:
+                raise ValidationError("Author need to be a string")
+    else:
+        raise ValidationError("Question need to be a string / between 0 and 200 characters ")

@@ -1,8 +1,9 @@
-from datetime import datetime, date, timedelta
+from datetime import datetime, timedelta
 from django.test import TestCase
 from django.core.exceptions import ValidationError
 from polls.models import Question, Choice
-from polls.utilities import is_valid_string, is_valid_author, create_question, is_valid_question, is_valid_date
+from polls.utilities import is_valid_string, is_valid_author, create_question, is_valid_question, is_valid_date, \
+    compare_datetime_a_greater_than_datetime_b
 
 
 # exemple
@@ -89,14 +90,21 @@ class UtilitiesTest(TestCase):
         lenght_parameter = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec qu"
         self.assertFalse(is_valid_question(lenght_parameter))
 
-
-    def test_is_valid_date_return_false_with_empty_date(self):
-        empty_parameter = ""
-        self.assertFalse(is_valid_date(empty_parameter))
-
     def test_is_valid_date_return_false_with_wrong_parameter_type(self):
-        empty_parameter = "salut toi"
-        self.assertFalse(is_valid_date(empty_parameter))
+        parameter = "ehehe"
+        self.assertFalse(is_valid_date(parameter))
+
+    def test_is_valid_date_return_true_with_right_parameter(self):
+        parameter = datetime.now()
+        self.assertTrue(is_valid_date(parameter))
+
+    # def test_datetime_a_is_a_valid_date(self):
+    #     parameter = datetime.now(), datetime() + timedelta(days=2)
+    #     self.assertTrue(compare_datetime_a_greater_than_datetime_b(parameter))
+
+    def test_create_question(self):
+        parameter = "d"
+
 
 """
 script devtest , print pour verifier ( toute les questions)

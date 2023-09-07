@@ -1,5 +1,5 @@
 import datetime
-from django.contrib import admin
+# from django.contrib import admin
 from django.db import models
 from django.utils import timezone
 
@@ -11,6 +11,10 @@ class Question(models.Model):
     updated_at = models.DateTimeField(null=True, blank=True, auto_now=True, verbose_name="date de modification",
                                       editable=False)
     author = models.CharField(max_length=150, null=True, blank=True)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(args, kwargs)
+        self.choice_set = None
 
     def __str__(self):
         return self.question_text
