@@ -12,10 +12,6 @@ class Question(models.Model):
                                       editable=False)
     author = models.CharField(max_length=150, null=True, blank=True)
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(args, kwargs)
-        self.choice_set = None
-
     def __str__(self):
         return self.question_text
 
