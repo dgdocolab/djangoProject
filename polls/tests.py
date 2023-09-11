@@ -53,55 +53,8 @@ class ChoiceTest(TestCase):
 
 
 class UtilitiesTest(TestCase):
-    questions = {
-        "1": "How are u",
-        "2": "How old are u",
-        "3": "What are u doing",
-        "4": "What's ur favorite sports",
-        "5": "What do you think about me",
-        "6": "Where do you lives",
-        "7": "What's ur name",
-        "8": "When is ur birthday",
-        "9": "What's the wether like ",
-        "10": "What's ur favorite game"
-    }
+    pass
 
-    authors = {
-        "1": "Jean",
-        "2": "Patrick",
-        "3": "Laurent",
-        "4": "Enzo",
-    }
-
-    choices = {
-        "1": "I'm fine ",
-        "2": "I'm tired",
-        "3": "I'm mad",
-        "4": "I'm 20",
-        "5": "I'm 25",
-        "6": "I'm 15",
-        "7": "I'm playing videos games",
-        "8": "I'm playing guitar",
-        "9": "I'm sleeping right now",
-        "10": "Judo",
-        "11": "MMA",
-        "12": "cool",
-        "13": "amazing",
-        "14": "paris",
-        "15": "LA",
-        "16": "Patrick",
-        "17": "William",
-        "18": "Ahmed",
-        "19": "2001",
-        "20": "1950",
-        "21": "2008",
-        "22": "good",
-        "23": "hot",
-        "24": "cold",
-        "25": "Valorant",
-        "26": "Smite",
-        "27": "Hunt Showdown ",
-    }
 
     # IS_VALID_STRING
     def test_is_valid_string(self):
@@ -208,8 +161,9 @@ class UtilitiesTest(TestCase):
                                        question_datas['author'])
             for choice in question_datas["choices"]:
                 create_choice(choice["choice_text"], question.id)
-        print(Question.objects.all().count())
-        print(Choice.objects.all().count())
+        print(Question.objects.all())
+        print(Choice.objects.all())
+
 
 
 """

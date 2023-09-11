@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Liste des questions des auteurs</h1>
+
+<ul>
+    {% for question in author_questions %}
+        <li>{{ question }}</li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>

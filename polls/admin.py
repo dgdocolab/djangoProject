@@ -12,6 +12,9 @@ class ChoiceInline(admin.StackedInline):
 class QuestionAdmin(admin.ModelAdmin):
     inlines = [ChoiceInline]
     readonly_fields = ["created_at", "updated_at"]
+    model = Question
+    list_display = ("question_text", "pub_date", "author")
+    list_filter = ("author",)
 
 
 admin.site.register(Question, QuestionAdmin)

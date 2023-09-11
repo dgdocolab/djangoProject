@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Liste des auteurs</h1>
+
+<ul>
+    {% for author in authors %}
+        <li><a href="{% url 'polls:authors-name' author%}">{{ author }}</a></li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>

@@ -10,7 +10,7 @@ from polls.models import Question, Choice
 
 def is_valid_type_int(int_to_test):
     """
-    A faire.
+    This return false if the parameter is not an int, or True.
     :param int_to_test:
     :return: Boolean
     """
@@ -21,7 +21,7 @@ def is_valid_type_int(int_to_test):
 
 def is_valid_type_string(string_to_test):
     """
-    This function raise an error if the parameter is not a string, or True.
+    This return false if the parameter is not a string, or True.
     :param string_to_test:
     :return: Boolean
     """

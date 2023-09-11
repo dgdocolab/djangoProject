@@ -1,3 +1,4 @@
+<a href="{% url 'polls:authors' %}">Liste des auteurs</a>
 {% if latest_question_list %}
     <ul>
     {% for question in latest_question_list %}
@@ -10,4 +11,6 @@
 
 {% load static %}
 
+
 <link rel="stylesheet" href="{% static 'polls/style.css' %}">
+
