@@ -6,7 +6,7 @@
 
 <ul>
     {% for author in authors %}
-        <li><a href="{% url 'polls:authors-name' author%}">{{ author }}</a></li>
+        <li><a href="{% url 'polls:author-questions' author %}">{{ author }}</a></li>
     {% endfor %}
 </ul>
 

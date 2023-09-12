@@ -49,11 +49,12 @@ def AuthorView(request):
     return HttpResponse(template.render(context, request))
 
 
-def AuthorQuestionView(request, author):
+
+def AuthorQuestionView(request, author_name):
     template = loader.get_template('author_questions.html')
     # créer une url avec un paramètre author string FAIT
     # créer un context avec les question, et créer l'interface. FAIT
-    aq = Question.objects.filter(author=author)
+    aq = Question.objects.filter(author=author_name)
     author_questions = []
     for question in aq:
         author_questions.append(question.question_text)
@@ -63,9 +64,10 @@ def AuthorQuestionView(request, author):
     # return HttpResponse(result)
     context = {
         'author_questions': author_questions,
-        'authors': author,
-              }
+        'authors': author_name,
+    }
     return HttpResponse(template.render(context, request))
+
 
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
